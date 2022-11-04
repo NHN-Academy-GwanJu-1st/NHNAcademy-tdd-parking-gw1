@@ -4,6 +4,10 @@ import com.nhnacadey.gw1.parking.domain.Car;
 
 public class Exit {
 
+    public Exit(Car car) {
+
+    }
+
     public void pay(Car car) {
 
         /*

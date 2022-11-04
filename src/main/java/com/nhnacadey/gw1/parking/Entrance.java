@@ -1,17 +1,43 @@
 package com.nhnacadey.gw1.parking;
 
 import com.nhnacadey.gw1.parking.domain.Car;
+import com.nhnacadey.gw1.parking.exception.LackOfParkingSpaceException;
+
+import java.time.LocalDateTime;
 
 public class Entrance {
 
-    public void scan(Car car) {
+    public Car scan(Car car) {
         /* 여기서 차량 번호를 받아 스캔하는 역할을 한다 .*/
         /* 차량 번호를 저장*/
 
-        // 아마 그러면 여기서 일반차 경차 대형차 구분하면 될듯 스캔이라는게
-        // 근데 그거는 나중에 구현하는 방식으로 진행하자
 
+        return car;
 
-        // 그러고 Parking Space객체에 Car 객체와 주차 구역 Code를 담아서 ParkingLot의 enter()메서드로 보내준다.
     }
+
+
+    public ParkingSpace searchParkingSpace(Car car, ParkingSpace[] parkingSpaces, int currentSpaceSize, int spaceMaxSize) {
+
+        int spaceNumber = 0;
+
+        if (currentSpaceSize > spaceMaxSize) {
+            throw new LackOfParkingSpaceException(currentSpaceSize);
+        }
+
+        for (int i = 0; i < parkingSpaces.length; i++) {
+            if (parkingSpaces[i] == null) {
+                spaceNumber = i;
+                break;
+            }
+        }
+
+        return fillParkingSpace(spaceNumber, car);
+    }
+
+    private ParkingSpace fillParkingSpace(int spaceNumber, Car car) {
+        String code = "A-" + Integer.toString(spaceNumber + 1);
+        return new ParkingSpace(code, car);
+    }
+
 }
