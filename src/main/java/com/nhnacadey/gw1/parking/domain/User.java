@@ -19,4 +19,13 @@ public class User {
     public Money getAmount() {
         return this.amount;
     }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId="+userId+
+                "amount=" + amount +
+                '}';
+    }
 }

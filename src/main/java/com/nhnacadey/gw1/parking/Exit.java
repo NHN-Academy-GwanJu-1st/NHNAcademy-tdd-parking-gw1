@@ -4,16 +4,30 @@ import com.nhnacadey.gw1.parking.domain.Car;
 
 public class Exit {
 
-    public Exit(Car car) {
 
+
+
+    private final Car car;
+
+    public Exit(Car car) {
+        this.car = car;
     }
 
-    public void pay(Car car) {
+    public void pay(Car car, long exitTime) {
+
+        car.setExitTime(exitTime);
+        long totalTimeSec = exitTime - car.getEntranceTime();
+
+
+
+        car.getEntranceTime();
+        car.getExitTime();
+
 
         /*
         * Car의 손님의 돈이 없으면 Exception
-        *   최초 30분	1,000원
-            추가 10분	500원	1초라도 넘으면 부과됩니다.
+        *   최초 30분	1,000원      1800초
+            추가 10분	500원	1초라도 넘으면 부과됩니다.     600초
             일일 주차	10,000원	일 최대 금액입니다. 24:00이 넘어가면 추가 요금이 부과됩니다.
             2일 연속 주차 시 20,000원
             30분 1초 주차한 경우 요금은 1,500원입니다.

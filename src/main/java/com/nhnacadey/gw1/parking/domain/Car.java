@@ -5,15 +5,12 @@ import java.util.Objects;
 
 public class Car {
 
-    private long number;
-
-    private static int carCount = 0;
+    private static long number = 0;
     private final User user;
-
     private long entranceTime;
     private long exitTime;
     public Car(User user) {
-        this.number = carCount++;
+        this.number++;
         this.user = user;
         this.entranceTime = 0;
         this.exitTime = 0;
@@ -40,6 +37,14 @@ public class Car {
         return this.user;
     }
 
+    public long getEntranceTime() {
+        return entranceTime;
+    }
+
+    public long getExitTime() {
+        return exitTime;
+    }
+
     public void setExitTime(long exitTime) {
         this.exitTime = exitTime;
     }
@@ -47,6 +52,7 @@ public class Car {
     @Override
     public String toString() {
         return "Car{" +
+                "number=" + number +
                 "user=" + user +
                 ", entranceTime=" + entranceTime +
                 ", exitTime=" + exitTime +
