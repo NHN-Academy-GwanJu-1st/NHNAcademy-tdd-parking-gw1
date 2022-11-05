@@ -7,12 +7,12 @@ public class Car {
 
     private static long number = 0;
     private final User user;
-    private long entranceTime;
+    private boolean entranceTime;
     private long exitTime;
     public Car(User user) {
         this.number++;
         this.user = user;
-        this.entranceTime = 0;
+        this.entranceTime = false;
         this.exitTime = 0;
     }
 
@@ -37,8 +37,16 @@ public class Car {
         return this.user;
     }
 
-    public long getEntranceTime() {
-        return entranceTime;
+//    public long getEntranceTime() {
+//        return entranceTime;
+//    }
+
+    public boolean isEntrance() {
+        return this.entranceTime;
+    }
+
+    public void checkEntrance() {
+        this.entranceTime = true;
     }
 
     public long getExitTime() {

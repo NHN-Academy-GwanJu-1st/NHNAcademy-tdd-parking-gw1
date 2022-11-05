@@ -79,7 +79,7 @@ public class ParkingLot {
 
         Car exitCar;
 
-        if (currentSpaceSize == 0 || !isExistCar(car)) {
+        if (!isExistCar(car)) {
             throw new NotAllowedExitExceptioon(car.getNumber());
         }
 
@@ -94,15 +94,25 @@ public class ParkingLot {
 
     private boolean isExistCar(Car car) {
 
-        if (Arrays.asList(parkingSpaces).isEmpty()) {
+//        if (Arrays.asList(parkingSpaces).isEmpty()) {
+//            return false;
+//        }
+
+
+        if (currentSpaceSize == 0) {
             return false;
         }
 
-        ParkingSpace existCar = Arrays.asList(parkingSpaces).stream()
-                .filter(parkingSpace -> parkingSpace != null && parkingSpace.getCar().getNumber() == car.getNumber())
-                .findFirst()
-                .orElse(null);
+        if (!car.isEntrance()) {
+            return false;
+        }
 
-        return Objects.nonNull(existCar);
+//        ParkingSpace existCar = Arrays.asList(parkingSpaces).stream()
+//                .filter(parkingSpace -> parkingSpace != null && parkingSpace.getCar().getNumber() == car.getNumber())
+//                .findFirst()
+//                .orElse(null);
+
+//        return Objects.nonNull(existCar);
+        return true;
     }
 }

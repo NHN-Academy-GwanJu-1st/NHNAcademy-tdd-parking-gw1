@@ -5,19 +5,19 @@ import com.nhnacadey.gw1.parking.domain.Money;
 public class User {
 
     private static long userId = 0;
-    private final Money amount;
+    private final Money money;
 
-    public User(long amount) {
+    public User(long money) {
         this.userId++;
-        this.amount = new Money(amount);
+        this.money = new Money(money);
     }
 
     public long getUserId() {
         return this.userId;
     }
 
-    public Money getAmount() {
-        return this.amount;
+    public long getMoneyOfAmount() {
+        return this.money.getAmount();
     }
 
 
@@ -25,7 +25,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "userId="+userId+
-                "amount=" + amount +
+                "amount=" + money +
                 '}';
     }
 }

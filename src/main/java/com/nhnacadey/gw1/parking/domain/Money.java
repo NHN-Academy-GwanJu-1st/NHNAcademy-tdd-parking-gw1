@@ -12,4 +12,8 @@ public class Money {
         }
         this.amount = amount;
     }
+
+    public long getAmount() {
+        return amount;
+    }
 }

@@ -1,11 +1,11 @@
 package com.nhnacadey.gw1.parking;
 
 import com.nhnacadey.gw1.parking.domain.Car;
+import com.nhnacadey.gw1.parking.exception.InvalidAmountException;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Exit {
-
-
-
 
     private final Car car;
 
@@ -13,16 +13,22 @@ public class Exit {
         this.car = car;
     }
 
-    public void pay(Car car, long exitTime) {
+    public void pay(long exitTime) {
+
+//      여기서 페이코 회원 체크 해줘서 넘겨주자
 
         car.setExitTime(exitTime);
-        long totalTimeSec = exitTime - car.getEntranceTime();
+        Tariff tariff = new Tariff(car.getExitTime());
+        long payment = tariff.payment();
+        log.info("주차비 : {}", payment);
 
-
-
-        car.getEntranceTime();
-        car.getExitTime();
-
+        if (this.car.getUser().getMoneyOfAmount() < payment) {
+            throw new InvalidAmountException(this.car.getUser().getMoneyOfAmount());
+        }
+//
+//        if (car.getUser().getAmount() < payment) {
+//
+//        }
 
         /*
         * Car의 손님의 돈이 없으면 Exception

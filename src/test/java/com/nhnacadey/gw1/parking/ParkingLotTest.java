@@ -77,4 +77,14 @@ class ParkingLotTest {
 
     }
 
+    @Test
+    void test() {
+        int MAXIMUM_ONE_DAY = 86400;
+
+        System.out.println( 864054 % MAXIMUM_ONE_DAY);
+        System.out.println(1201 % 600);
+
+
+    }
+
 }
