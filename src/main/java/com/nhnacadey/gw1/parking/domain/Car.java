@@ -37,10 +37,6 @@ public class Car {
         return this.user;
     }
 
-//    public long getEntranceTime() {
-//        return entranceTime;
-//    }
-
     public boolean isEntrance() {
         return this.entranceTime;
     }

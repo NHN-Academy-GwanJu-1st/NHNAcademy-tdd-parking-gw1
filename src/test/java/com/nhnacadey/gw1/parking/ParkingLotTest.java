@@ -13,12 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingLotTest {
 
-
-    /**
-     * 주차 제대로 차가 들어왔는지  V
-     * 주차 공간이 없을 경우 Exception check
-     */
-
     ParkingLot parkingLot;
     User testUser;
 
@@ -78,13 +72,15 @@ class ParkingLotTest {
     }
 
     @Test
-    void test() {
-        int MAXIMUM_ONE_DAY = 86400;
+    void exit_properlyOutOfCar() {
+        Car car = new Car(testUser);
+        parkingLot.enter(car);
 
-        System.out.println( 864054 % MAXIMUM_ONE_DAY);
-        System.out.println(1201 % 600);
+        ParkingSpace[] parkingSpaces = parkingLot.getParkingSpaces();
+        assertNotNull(parkingSpaces[0]);
 
+        parkingLot.exit(car);
+        assertNull(parkingSpaces[0]);
 
     }
-
 }

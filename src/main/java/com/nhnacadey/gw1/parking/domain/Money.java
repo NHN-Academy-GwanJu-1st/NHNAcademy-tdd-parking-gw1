@@ -7,13 +7,13 @@ public class Money {
     private final long amount;
 
     public Money(long amount) {
-        if (amount < 0) {
-            throw new InvalidAmountException(amount);
+            if (amount < 0) {
+                throw new InvalidAmountException(amount);
+            }
+            this.amount = amount;
         }
-        this.amount = amount;
-    }
 
-    public long getAmount() {
+        public long getAmount() {
         return amount;
     }
 }
