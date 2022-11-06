@@ -5,10 +5,6 @@ import com.nhnacadey.gw1.parking.exception.LackOfParkingSpaceException;
 import com.nhnacadey.gw1.parking.exception.NotAllowedExitExceptioon;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-
 @Slf4j
 public class ParkingLot {
 
@@ -73,7 +69,6 @@ public class ParkingLot {
         return new ParkingSpace(code, car);
     }
 
-
     public void exit(Car car) {
         log.info("Parking exit");
 
@@ -84,20 +79,20 @@ public class ParkingLot {
         }
 
         for (int i = 0; i < spaceMaxSize; i++) {
-            if (parkingSpaces[i] != null && parkingSpaces[i].getCar().equals(car)) {
-                exitCar = parkingSpaces[i].getCar();
-                parkingSpaces[i] = null;
-                currentSpaceSize--;
-            }
+            searchAndExitCar(car, i);
+        }
+    }
+
+    private void searchAndExitCar(Car car, int i) {
+        Car exitCar;
+        if (parkingSpaces[i] != null && parkingSpaces[i].getCar().equals(car)) {
+            exitCar = parkingSpaces[i].getCar();
+            parkingSpaces[i] = null;
+            currentSpaceSize--;
         }
     }
 
     private boolean isExistCar(Car car) {
-
-//        if (Arrays.asList(parkingSpaces).isEmpty()) {
-//            return false;
-//        }
-
 
         if (currentSpaceSize == 0) {
             return false;
@@ -107,12 +102,6 @@ public class ParkingLot {
             return false;
         }
 
-//        ParkingSpace existCar = Arrays.asList(parkingSpaces).stream()
-//                .filter(parkingSpace -> parkingSpace != null && parkingSpace.getCar().getNumber() == car.getNumber())
-//                .findFirst()
-//                .orElse(null);
-
-//        return Objects.nonNull(existCar);
         return true;
     }
 }

@@ -1,6 +1,5 @@
 package com.nhnacadey.gw1.parking.domain;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Car {
@@ -60,13 +59,4 @@ public class Car {
         this.exitTime = exitTime;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "number=" + number +
-                "user=" + user +
-                ", entranceTime=" + entranceTime +
-                ", exitTime=" + exitTime +
-                '}';
-    }
 }

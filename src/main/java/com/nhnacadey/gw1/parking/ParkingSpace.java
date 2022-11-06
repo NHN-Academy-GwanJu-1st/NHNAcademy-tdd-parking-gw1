@@ -15,12 +15,4 @@ public class ParkingSpace {
     public Car getCar() {
         return car;
     }
-
-    @Override
-    public String toString() {
-        return "ParkingSpace{" +
-                "code='" + code + '\'' +
-                ", car=" + car +
-                '}';
-    }
 }

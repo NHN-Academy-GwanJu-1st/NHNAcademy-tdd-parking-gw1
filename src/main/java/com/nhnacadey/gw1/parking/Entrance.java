@@ -2,7 +2,6 @@ package com.nhnacadey.gw1.parking;
 
 import com.nhnacadey.gw1.parking.domain.Car;
 import com.nhnacadey.gw1.parking.domain.CarType;
-import com.nhnacadey.gw1.parking.exception.LackOfParkingSpaceException;
 import com.nhnacadey.gw1.parking.exception.NotAllowedCarTypeException;
 
 import java.time.LocalDateTime;

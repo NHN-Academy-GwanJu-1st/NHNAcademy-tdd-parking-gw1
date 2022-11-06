@@ -1,5 +1,6 @@
 package com.nhnacadey.gw1.parking;
 
+import com.nhnacadey.gw1.parking.tariff.BeforeChangedTariff;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -8,7 +9,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
-class TariffTest {
+class BeforeChangedTariffTest {
 
     Map<Integer, Long> priceMap;
 
@@ -26,9 +27,9 @@ class TariffTest {
     @ValueSource(ints = {1800, 1801, 3000, 3660, 21600})
     void tariff_payment_eachTimePrice(int timeSec) {
 
-        Tariff tariff = new Tariff(timeSec);
+        BeforeChangedTariff tariff = new BeforeChangedTariff();
 
-        assertThat(tariff.payment()).isEqualTo(priceMap.get(timeSec));
+        assertThat(tariff.payment(timeSec)).isEqualTo(priceMap.get(timeSec));
 
     }
 }
