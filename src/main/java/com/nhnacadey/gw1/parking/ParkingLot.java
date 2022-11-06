@@ -53,8 +53,8 @@ public class ParkingLot {
             throw new LackOfParkingSpaceException(currentSpaceSize);
         }
 
-        Entrance entrance = new Entrance();
-        Car scannedCar = entrance.scan(car);
+        Entrance entrance = new Entrance(car);
+        Car scannedCar = entrance.scan();
         searchParkingSpace(scannedCar);
     }
 

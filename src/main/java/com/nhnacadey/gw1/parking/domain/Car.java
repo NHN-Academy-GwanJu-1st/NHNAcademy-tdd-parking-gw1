@@ -9,11 +9,14 @@ public class Car {
     private final User user;
     private boolean entranceTime;
     private long exitTime;
-    public Car(User user) {
+    private CarType carType;
+
+    public Car(User user, CarType carType) {
         this.number++;
         this.user = user;
         this.entranceTime = false;
         this.exitTime = 0;
+        this.carType = carType;
     }
 
     @Override
@@ -47,6 +50,10 @@ public class Car {
 
     public long getExitTime() {
         return exitTime;
+    }
+
+    public CarType getCarType() {
+        return carType;
     }
 
     public void setExitTime(long exitTime) {

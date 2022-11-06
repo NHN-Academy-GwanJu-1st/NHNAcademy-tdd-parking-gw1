@@ -28,9 +28,6 @@ public class ParkingSystem {
 
     public void parking(Car car) {
 
-        Entrance entrance = new Entrance();
-        entrance.scan(car);
-
     }
 
 

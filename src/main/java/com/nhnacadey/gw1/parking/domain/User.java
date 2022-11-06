@@ -7,9 +7,18 @@ public class User {
     private static long userId = 0;
     private Money money;
 
+    private Payco payco;
+
     public User(long money) {
         this.userId++;
         this.money = new Money(money);
+        this.payco = Payco.NONE;
+    }
+
+    public User(long money, Payco payco) {
+        this.userId++;
+        this.money = new Money(money);
+        this.payco = Payco.MEMBER;
     }
 
     public long getUserId() {
@@ -23,6 +32,11 @@ public class User {
     public void amountAfterPayment(long afterAmount) {
         this.money = new Money(afterAmount);
     }
+
+    public Payco getPayco() {
+        return payco;
+    }
+
 
 
     @Override

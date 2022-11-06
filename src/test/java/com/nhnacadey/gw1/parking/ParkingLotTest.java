@@ -1,6 +1,7 @@
 package com.nhnacadey.gw1.parking;
 
 import com.nhnacadey.gw1.parking.domain.Car;
+import com.nhnacadey.gw1.parking.domain.CarType;
 import com.nhnacadey.gw1.parking.domain.User;
 import com.nhnacadey.gw1.parking.exception.LackOfParkingSpaceException;
 import com.nhnacadey.gw1.parking.exception.NotAllowedExitExceptioon;
@@ -27,7 +28,7 @@ class ParkingLotTest {
     @Test
     void enter_collectSpaceTest() {
 
-        Car car = new Car(testUser);
+        Car car = new Car(testUser, CarType.MEDIUM);
 
         parkingLot.enter(car);
         ParkingSpace[] parkingSpaces = parkingLot.getParkingSpaces();
@@ -42,10 +43,10 @@ class ParkingLotTest {
     void enter_parkingSpace_isFull_thenLackOfParkingSpaceException() {
 
         for (int i = 0; i < 10; i++) {
-            parkingLot.enter(new Car(new User(i * 1000)));
+            parkingLot.enter(new Car(new User(i * 1000), CarType.MEDIUM));
         }
 
-        assertThatThrownBy(() -> parkingLot.enter(new Car(testUser)))
+        assertThatThrownBy(() -> parkingLot.enter(new Car(testUser, CarType.MEDIUM)))
                 .isInstanceOf(LackOfParkingSpaceException.class)
                 .hasMessageContaining("Lack of ParkingSpace");
     }
@@ -53,17 +54,17 @@ class ParkingLotTest {
 
     @Test
     void exit_nothingSpace_thenNotAllowedExitException() {
-        assertThatThrownBy(() -> parkingLot.exit(new Car(testUser)))
+        assertThatThrownBy(() -> parkingLot.exit(new Car(testUser, CarType.MEDIUM)))
                 .isInstanceOf(NotAllowedExitExceptioon.class)
                 .hasMessageContaining("Not Allowed Exit");
     }
 
     @Test
     void exit_notExistCar_thenNotAllowedExitException() {
-        Car existCar = new Car(testUser);
+        Car existCar = new Car(testUser, CarType.MEDIUM);
         parkingLot.enter(existCar);
 
-        Car nonExistCar = new Car(testUser);
+        Car nonExistCar = new Car(testUser, CarType.MEDIUM);
 
         assertThatThrownBy(() -> parkingLot.exit(nonExistCar))
                 .isInstanceOf(NotAllowedExitExceptioon.class)
@@ -73,7 +74,7 @@ class ParkingLotTest {
 
     @Test
     void exit_properlyOutOfCar() {
-        Car car = new Car(testUser);
+        Car car = new Car(testUser, CarType.MEDIUM);
         parkingLot.enter(car);
 
         ParkingSpace[] parkingSpaces = parkingLot.getParkingSpaces();
