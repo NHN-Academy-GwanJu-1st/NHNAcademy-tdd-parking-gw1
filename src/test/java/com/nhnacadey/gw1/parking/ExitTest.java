@@ -92,4 +92,24 @@ class ExitTest {
         exit.pay(3540, new AfterChangedTariff());
         assertThat(user.getMoneyOfAmount()).isEqualTo(10_000);
     }
+
+    @Test
+    void exit_AfterTariff_oneHourCoupon_smallCar() {
+        User user = new User(10_000, Payco.NONE, Coupon.ONE_HOUR);
+        exit = new Exit(new Car(user, CarType.SMALL));
+
+        exit.pay(14000, new AfterChangedTariff());
+        assertThat(user.getMoneyOfAmount()).isEqualTo(3700);
+    }
+
+    @Test
+    void exit_AfterTariff_twoHourCoupon_smallCar_payco() {
+        User user = new User(10_000, Payco.MEMBER, Coupon.TWO_HOUR);
+        exit = new Exit(new Car(user, CarType.SMALL));
+
+        exit.pay(14000, new AfterChangedTariff());
+        assertThat(user.getMoneyOfAmount()).isEqualTo(6760);
+    }
+
+
 }
